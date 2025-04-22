@@ -117,7 +117,7 @@
                 question: "Who is the best computer teacher?",
                 options: ["Pratham", "Bishnu", "Shiva", "Pawan"],
                 answer: "Pratham"
-            }
+            },
         ];
 
         let currentQuestion = 0;
