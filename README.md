@@ -138,6 +138,11 @@
                 options: ["Yamaha R1", "Aprillia RS V4", "GSX-R 1000", "CBR 1000RR-R FIREBLADE"],
                 answer: "CBR 1000RR-R FIREBLADE"
             },
+            {
+                question: "Which is the richest Football club?",
+                options: ["Aston Vilaa", "FC Barcelona", "Lazio FC", "Real Madrid CF"],
+                answer: "Real Madrid CF"
+            },
         ];
 
         let currentQuestion = 0;
