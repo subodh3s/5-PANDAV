@@ -118,6 +118,11 @@
                 options: ["Pratham", "Bishnu", "Shiva", "Pawan"],
                 answer: "Pratham"
             },
+            {
+                question: "When did Pratham Sir joined CLEBS?",
+                options: ["2065", "1969", "2003", "2081"],
+                answer: "2081"
+            },
         ];
 
         let currentQuestion = 0;
