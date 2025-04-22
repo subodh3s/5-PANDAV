@@ -149,9 +149,9 @@
                 answer: "2008 May 18"
             },
              {
-                question: "When was Nepal decleared as Secular state?",
-                options: ["2001 Januray 17", "2006 May 26", "2013 October 7", "2008 May 18"],
-                answer: "2008 May 18"
+                question: "When was Cristiano Ronaldo born?",
+                options: ["2001 Januray 17", "2006 May 26", "1985 February 5", "2008 May 18"],
+                answer: "1985 February 5"
             },
              {
                 question: "Who invented Coca-Cola?",
