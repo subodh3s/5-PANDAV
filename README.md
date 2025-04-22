@@ -128,6 +128,16 @@
                 options: ["1957 August 11", "1969 April 1", "1952 February 22", "2025 April 29"],
                 answer: "1952 February 22"
             },
+             {
+                question: "What is the main comonent of Computer?",
+                options: ["Carburetor", "Air Filter", "CPU", "Clutch Plate"],
+                answer: "CPU"
+            },
+            {
+                question: "Which one of the following achieves the speed of 183 kmph in first gear?",
+                options: ["Yamaha R1", "Aprillia RS V4", "GSX-R 1000", "CBR 1000RR-R FIREBLADE"],
+                answer: "CPU"
+            },
         ];
 
         let currentQuestion = 0;
