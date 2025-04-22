@@ -123,6 +123,11 @@
                 options: ["2065", "1969", "2003", "2081"],
                 answer: "2081"
             },
+             {
+                question: "When was KP OLI born?",
+                options: ["1957 August 11", "1969 April 1", "1952 February 22", "2025 April 29"],
+                answer: "2081"
+            },
         ];
 
         let currentQuestion = 0;
