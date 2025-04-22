@@ -112,6 +112,11 @@
                 question: "Which country is known as the Land of the Rising Sun?",
                 options: ["China", "Japan", "South Korea", "India"],
                 answer: "Japan"
+            },
+            {
+                question: "Who is the best computer teacher?",
+                options: ["Pratham", "Bishnu", "Shiva", "Pawan"],
+                answer: "Pratham"
             }
         ];
 
