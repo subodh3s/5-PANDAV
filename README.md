@@ -143,6 +143,11 @@
                 options: ["Aston Vilaa", "FC Barcelona", "Lazio FC", "Real Madrid CF"],
                 answer: "Real Madrid CF"
             },
+            {
+                question: "When was Nepal decleared as Secular state?",
+                options: ["2001 Januray 17", "2006 May 26", "2013 October 7", "2008 May 18"],
+                answer: "2008 May 18"
+            },
         ];
 
         let currentQuestion = 0;
