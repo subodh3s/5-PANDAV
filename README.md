@@ -136,7 +136,7 @@
             {
                 question: "Which one of the following achieves the speed of 183 kmph in first gear?",
                 options: ["Yamaha R1", "Aprillia RS V4", "GSX-R 1000", "CBR 1000RR-R FIREBLADE"],
-                answer: "CPU"
+                answer: "CBR 1000RR-R FIREBLADE"
             },
         ];
 
