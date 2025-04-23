@@ -168,6 +168,11 @@
                 options: ["Lional Messi", "Cristiano Ronaldo", "Harry Magurie", "N'Golo Kanté"],
                 answer: "Lional Messi"
             },
+            {
+                question: "Who was the first Programmer?",
+                options: ["Lady Ada Lovelace", "John Von Neumann", "Charles Babbage", "Albert Einstein"],
+                answer: "Lady Ada Lovalace"
+            },
         ];
 
         let currentQuestion = 0;
