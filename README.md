@@ -163,6 +163,11 @@
                 options: ["John von Neumann ", "Jeff Bezos", "Binod Chaudhary", "Steve Jobs"],
                 answer: "Steve Jobs"
             },
+             {
+                question: "Which man has the most trophies in football?",
+                options: ["Lional Messi", "Cristiano Ronaldo", "Harry Magurie", "N'Golo Kanté"],
+                answer: "Lional Messi"
+            },
         ];
 
         let currentQuestion = 0;
