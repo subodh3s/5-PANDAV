@@ -158,6 +158,11 @@
                 options: ["Jhon Stith Pemberton", "Celeb Bradham", "Charles Alderton", "Bob Stiller"],
                 answer: "Jhon Stith Pemberton"
             },
+             {
+                question: "Who was the founder of Apple?",
+                options: ["John von Neumann ", "Jeff Bezos", "Binod Chaudhary", "Steve Jobs"],
+                answer: "Steve Jobs"
+            },
         ];
 
         let currentQuestion = 0;
