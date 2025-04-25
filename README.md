@@ -173,6 +173,11 @@
                 options: ["Lady Ada Lovelace", "John Von Neumann", "Charles Babbage", "Albert Einstein"],
                 answer: "Lady Ada Lovalace"
             },
+              {
+                question: "Who has the most wins in MOTO GP?",
+                options: ["Valentinio Rossi 46", "Marc Márquez 93", "Giacomo Agostini 1", "Fabio Quartararo 20"],
+                answer: "Giacomo Agostini 1"
+            },
         ];
 
         let currentQuestion = 0;
