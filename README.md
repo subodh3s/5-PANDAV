@@ -1,300 +1,210 @@
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+.quiz-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  animation: popUp 0.8s ease;
+}
+@keyframes popUp {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.question {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+}
+.option {
+  background: #f7f7f7;
+  margin: 10px 0;
+  padding: 15px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  border: 2px solid transparent;
+}
+.option:hover {
+  background: #e0f0ff;
+  border-color: #4a90e2;
+  transform: translateY(-2px);
+}
+input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.3);
+  accent-color: #4a90e2;
+}
+button {
+  margin-top: 25px;
+  padding: 14px;
+  width: 100%;
+  background: linear-gradient(to right, #4a90e2, #89f7fe);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: linear-gradient(to right, #66a6ff, #a2d4ff);
+  color: #333;
+}
+#result {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #27ae60;
+  font-weight: bold;
+  animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.progress-bar {
+  width: 100%;
+  background: #ddd;
+  height: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #4a90e2, #89f7fe);
+  transition: width 0.5s ease;
+}
+.timer {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #4a90e2;
+  font-weight: 600;
+}
 
-        .quiz-container {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .question {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option {
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .option:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .timer {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #ff5722;
-        }
-
-        .result {
-            font-size: 1.5em;
-            color: #4caf50;
-            display: none;
-        }
-
-        .restart-btn {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .restart-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  </style>
 </head>
-
 <body>
-    <div class="quiz-container">
-        <div class="timer">Time Left: <span id="time">30</span>s</div>
-        <div class="question">Question will appear here</div>
-        <div class="options"></div>
-        <div class="result">Your score: <span id="score">0</span></div>
-        <button class="restart-btn">Restart Quiz</button>
+  <div class="quiz-container">
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
     </div>
-    <script>
-        const quizData = [
-            {
-                question: "What is the capital of France?",
-                options: ["Berlin", "Madrid", "Paris", "Lisbon"],
-                answer: "Paris"
-            },
-            {
-                question: "Which language is used for web development?",
-                options: ["Python", "HTML", "Java", "C++"],
-                answer: "HTML"
-            },
-            {
-                question: "Who wrote 'Hamlet'?",
-                options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"],
-                answer: "William Shakespeare"
-            },
-            {
-                question: "What is the largest planet in our solar system?",
-                options: ["Earth", "Mars", "Jupiter", "Saturn"],
-                answer: "Jupiter"
-            },
-            {
-                question: "Which country is known as the Land of the Rising Sun?",
-                options: ["China", "Japan", "South Korea", "India"],
-                answer: "Japan"
-            },
-            {
-                question: "Who is the best computer teacher?",
-                options: ["Pratham", "Bishnu", "Shiva", "Pawan"],
-                answer: "Pratham"
-            },
-            {
-                question: "When did Pratham Sir joined CLEBS?",
-                options: ["2065", "1969", "2003", "2081"],
-                answer: "2081"
-            },
-             {
-                question: "When was KP OLI born?",
-                options: ["1957 August 11", "1969 April 1", "1952 February 22", "2025 April 29"],
-                answer: "1952 February 22"
-            },
-             {
-                question: "What is the main comonent of Computer?",
-                options: ["Carburetor", "Air Filter", "CPU", "Clutch Plate"],
-                answer: "CPU"
-            },
-            {
-                question: "Which one of the following achieves the speed of 183 kmph in first gear?",
-                options: ["Yamaha R1", "Aprillia RS V4", "GSX-R 1000", "CBR 1000RR-R FIREBLADE"],
-                answer: "CBR 1000RR-R FIREBLADE"
-            },
-            {
-                question: "Which is the richest Football club?",
-                options: ["Aston Vilaa", "FC Barcelona", "Lazio FC", "Real Madrid CF"],
-                answer: "Real Madrid CF"
-            },
-            {
-                question: "When was Nepal decleared as Secular state?",
-                options: ["2001 Januray 17", "2006 May 26", "2013 October 7", "2008 May 18"],
-                answer: "2008 May 18"
-            },
-             {
-                question: "When was Cristiano Ronaldo born?",
-                options: ["2001 Januray 17", "2006 May 26", "1985 February 5", "2008 May 18"],
-                answer: "1985 February 5"
-            },
-             {
-                question: "Who invented Coca-Cola?",
-                options: ["Jhon Stith Pemberton", "Celeb Bradham", "Charles Alderton", "Bob Stiller"],
-                answer: "Jhon Stith Pemberton"
-            },
-             {
-                question: "Who was the founder of Apple?",
-                options: ["John von Neumann ", "Jeff Bezos", "Binod Chaudhary", "Steve Jobs"],
-                answer: "Steve Jobs"
-            },
-             {
-                question: "Which man has the most trophies in football?",
-                options: ["Lional Messi", "Cristiano Ronaldo", "Harry Magurie", "N'Golo Kanté"],
-                answer: "Lional Messi"
-            },
-            {
-                question: "Who was the first Programmer?",
-                options: ["Lady Ada Lovelace", "John Von Neumann", "Charles Babbage", "Albert Einstein"],
-                answer: "Lady Ada Lovalace"
-            },
-              {
-                question: "Who has the most wins in MOTO GP?",
-                options: ["Valentinio Rossi 46", "Marc Márquez 93", "Giacomo Agostini 1", "Fabio Quartararo 20"],
-                answer: "Giacomo Agostini 1"
-            },
-            {
-                question: "When was World War I ended?",
-                options: ["1869 July 23", "1914 July 28", "1941 August 21", "1491 January 1"],
-                answer: "1914 July 28"
-            },
-             {
-                question: "When was World War I ended?",
-                options: ["1869 July 23", "1914 July 28", "1941 August 21", "1491 January 1"],
-                answer: "1914 July 28"
-            },
-             {
-                question: "Which of the following countries was first to use a symbol for Zero(0)?",
-                options: ["United Kingdom", "India", "Japan", "China"],
-                answer: "India"
-            },
-            {
-                question: "Who invented roll film?",
-                options: ["Takeshi Fuji", "Mulalo Doyoyo", "George Eastman", "John Kodak"],
-                answer: "George Eastman"
-            },
-             {
-                question: "Which country launched the first Artificial Satellite?",
-                options: ["Unitade States", "Soviet Union", "Bandiaterra", "France"],
-                answer: "Soviet Union"
-            },
-            {
-                question: "Who invented roll film?",
-                options: ["Takeshi Fuji", "Mulalo Doyoyo", "George Eastman", "John Kodak"],
-                answer: "George Eastman"
-            },
-        ];
+    <div id="timer" class="timer"></div>
+    <div id="question" class="question"></div>
+    <div id="options"></div>
+    <button onclick="submitAnswer()">Submit</button>
+    <div id="result"></div>
+  </div>  <script>
+    const quizData = [
+      {
+        question: "What is the capital of France?",
+        options: ["Paris", "London", "Rome", "Berlin"],
+        answer: "Paris"
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter", "Saturn"],
+        answer: "Mars"
+      },
+      {
+        question: "Who wrote 'Hamlet'?",
+        options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+        answer: "William Shakespeare"
+      }
+    ];
 
-        let currentQuestion = 0;
-        let score = 0;
-        let timeLeft = 30;
-        let timerInterval;
-        const timerEl = document.getElementById('time');
-        const questionEl = document.querySelector('.question');
-        const optionsEl = document.querySelector('.options');
-        const resultEl = document.querySelector('.result');
-        const scoreEl = document.getElementById('score');
-        const restartBtn = document.querySelector('.restart-btn');
+    let currentQuestion = 0;
+    let score = 0;
+    let timerInterval;
+    let timeLeft = 20;
 
-        // Function to load the question
-        function loadQuestion() {
-            if (currentQuestion >= quizData.length) {
-                endQuiz();
-                return;
-            }
-            clearInterval(timerInterval);
-            timeLeft = 30;
-            timerEl.textContent = timeLeft;
-            startTimer();
-            const currentQuiz = quizData[currentQuestion];
-            questionEl.textContent = currentQuiz.question;
-            optionsEl.innerHTML = ''; // Clear previous options
-            currentQuiz.options.forEach(option => {
-                const button = document.createElement('button');
-                button.classList.add('option');
-                button.textContent = option;
-                button.onclick = () => checkAnswer(option);
-                optionsEl.appendChild(button);
-            });
-        }
+    function loadQuestion() {
+      clearInterval(timerInterval);
+      timeLeft = 20;
+      document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+      timerInterval = setInterval(updateTimer, 1000);
 
-        // Check the answer
-        function checkAnswer(selectedOption) {
-            if (selectedOption === quizData[currentQuestion].answer) {
-                score++;
-            }
-            currentQuestion++;
-            loadQuestion();
-        }
+      const q = quizData[currentQuestion];
+      document.getElementById("question").innerText = q.question;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      q.options.forEach(option => {
+        optionsDiv.innerHTML += `<div class='option'><label><input type='radio' name='option' value='${option}'> ${option}</label></div>`;
+      });
+      updateProgress();
+    }
 
-        // Start the timer
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                timerEl.textContent = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    endQuiz();
-                }
-            }, 1000);
-        }
+    function updateTimer() {
+      timeLeft--;
+      document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        submitAnswer(true);
+      }
+    }
 
-        // End the quiz and show the results
-        function endQuiz() {
-            clearInterval(timerInterval);
-            questionEl.style.display = 'none';
-            optionsEl.style.display = 'none';
-            resultEl.style.display = 'block';
-            scoreEl.textContent = score;
-            restartBtn.style.display = 'block';
-        }
-
-        // Restart the quiz
-        restartBtn.addEventListener('click', () => {
-            // Reset variables
-            currentQuestion = 0;
-            score = 0;
-            timeLeft = 30;
-            timerEl.textContent = timeLeft;
-
-            // Reset the display
-            questionEl.style.display = 'block';
-            optionsEl.style.display = 'flex'; // Ensure options are displayed correctly
-            resultEl.style.display = 'none';
-            restartBtn.style.display = 'none';
-
-            // Load the first question
-            loadQuestion();
-        });
-
-        // Initialize the quiz with the first question
+    function submitAnswer(timeout = false) {
+      clearInterval(timerInterval);
+      const selected = document.querySelector("input[name='option']:checked");
+      if (!selected && !timeout) return alert("Please select an option!");
+      if (selected && selected.value === quizData[currentQuestion].answer) {
+        score++;
+      }
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
         loadQuestion();
-    </script>
-</body>
+      } else {
+        showResult();
+      }
+    }
 
+    function updateProgress() {
+      const progress = document.getElementById('progress');
+      const percent = (currentQuestion / quizData.length) * 100;
+      progress.style.width = percent + '%';
+    }
+
+    function showResult() {
+      document.querySelector(".quiz-container").innerHTML = `<h2>Your Score: ${score}/${quizData.length}</h2><p style='margin-top:20px;'>Thanks for playing!</p>`;
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+      confetti({
+        particleCount: 200,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#4a90e2', '#66a6ff', '#a2d4ff']
+      });
+    }
+
+    loadQuestion();
+  </script></body>
 </html>
