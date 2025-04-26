@@ -50,11 +50,11 @@
       position: relative;
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
-      border-radius: 10px;
+      border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       max-width: 700px;
       width: 250%;
-      z-index: 10;
+      z-index: 20;
       backdrop-filter: blur(10px);
     }
 
