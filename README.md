@@ -193,6 +193,21 @@
                 options: ["United Kingdom", "India", "Japan", "China"],
                 answer: "India"
             },
+            {
+                question: "Who invented roll film?",
+                options: ["Takeshi Fuji", "Mulalo Doyoyo", "George Eastman", "John Kodak"],
+                answer: "George Eastman"
+            },
+             {
+                question: "Which country launched the first Artificial Satellite?",
+                options: ["Unitade States", "Soviet Union", "Bandiaterra", "France"],
+                answer: "Soviet Union"
+            },
+            {
+                question: "Who invented roll film?",
+                options: ["Takeshi Fuji", "Mulalo Doyoyo", "George Eastman", "John Kodak"],
+                answer: "George Eastman"
+            },
         ];
 
         let currentQuestion = 0;
