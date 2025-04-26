@@ -185,7 +185,15 @@
 const quizData = [
   { question: "Capital of France?", options: ["Paris", "Berlin", "Madrid", "Rome"], answer: "Paris" },
   { question: "Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: "Mars" },
-  { question: "Author of Hamlet?", options: ["Twain", "Shakespeare", "Dickens", "Austen"], answer: "Shakespeare" }
+  { question: "Author of Hamlet?", options: ["Twain", "Shakespeare", "Dickens", "Austen"], answer: "Shakespeare" },
+  { question: "Father of Ai?", options: ["Patanjali Baba", "John McCarthy", "Charles Babbage", "Albert Einstein"], answer: "John McCarthy" },
+  { question: "Best computer teacher of CLEBS?", options: ["Pratham", "Shiva", "Bishnu", "Devi"], answer: "Pratham" },
+  { question: "Capital of Belarus?", options: ["Minsk", "Vilnius", "Brasília", "Chisinau"], answer: "Minsk" },
+  { question: "Largest Lake?", options: ["Caspian Sea", "Baikal", "Lake Superior", "Ontario"], answer: "Baikal" },
+  { question: "Longest River?", options: ["Amazon", "Nile", "Kaligandaki", "Mississippi"], answer: "Nile" },
+  { question: "Gas used to Extinguish Fire?", options: ["Nitrogen", "Oxygen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxode" },
+  { question: "National Animal of Australia?", options: ["Kangaroo", "Panda", "Zebra", "Giraffe"], answer: "Kangaroo" },
+  { question: "What does Entomology deals with?", options: ["The study of Insects", "The study of Behaviour of Human Beings", "The study of rocks", "The study of Nature"], answer: "Mars" },
 ];
 
 let current = 0, score = 0, timer, timeLeft = 20;
