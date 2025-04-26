@@ -98,7 +98,7 @@
       content: "✔";
       position: absolute;
       top: 8px;
-      right: 10px;
+      right: 5px;
       color: #4fc3f7;
       font-size: 18px;
     }
