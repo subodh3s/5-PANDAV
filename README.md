@@ -178,6 +178,16 @@
                 options: ["Valentinio Rossi 46", "Marc Márquez 93", "Giacomo Agostini 1", "Fabio Quartararo 20"],
                 answer: "Giacomo Agostini 1"
             },
+            {
+                question: "When was World War I ended?",
+                options: ["1869 July 23", "1914 July 28", "1941 August 21", "1491 January 1"],
+                answer: "1914 July 28"
+            },
+             {
+                question: "When was World War I ended?",
+                options: ["1869 July 23", "1914 July 28", "1941 August 21", "1491 January 1"],
+                answer: "1914 July 28"
+            },
         ];
 
         let currentQuestion = 0;
