@@ -32,7 +32,7 @@
     .line {
       position: absolute;
       width: 2px;
-      height: 100%;
+      height: 150%;
       background: rgba(255, 255, 255, 0.05);
       animation: moveLines 10s linear infinite;
     }
