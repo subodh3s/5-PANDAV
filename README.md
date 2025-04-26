@@ -39,7 +39,7 @@
 
     @keyframes moveLines {
       from {
-        transform: translateY(0) rotate(45deg);
+        transform: translateY(10) rotate(45deg);
       }
       to {
         transform: translateY(-100%) rotate(45deg);
