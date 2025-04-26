@@ -191,9 +191,9 @@ const quizData = [
   { question: "Capital of Belarus?", options: ["Minsk", "Vilnius", "Brasília", "Chisinau"], answer: "Minsk" },
   { question: "Largest Lake?", options: ["Caspian Sea", "Baikal", "Lake Superior", "Ontario"], answer: "Baikal" },
   { question: "Longest River?", options: ["Amazon", "Nile", "Kaligandaki", "Mississippi"], answer: "Nile" },
-  { question: "Gas used to Extinguish Fire?", options: ["Nitrogen", "Oxygen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxode" },
+  { question: "Gas used to Extinguish Fire?", options: ["Nitrogen", "Oxygen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxide" },
   { question: "National Animal of Australia?", options: ["Kangaroo", "Panda", "Zebra", "Giraffe"], answer: "Kangaroo" },
-  { question: "What does Entomology deals with?", options: ["The study of Insects", "The study of Behaviour of Human Beings", "The study of rocks", "The study of Nature"], answer: "Mars" },
+  { question: "What does Entomology deals with?", options: ["The study of Insects", "The study of Behaviour of Human Beings", "The study of rocks", "The study of Nature"], answer: "The study of Insects" },
 ];
 
 let current = 0, score = 0, timer, timeLeft = 20;
