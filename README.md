@@ -1,210 +1,243 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz App</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-}
-.quiz-container {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 450px;
-  text-align: center;
-  animation: popUp 0.8s ease;
-}
-@keyframes popUp {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-.question {
-  font-size: 24px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 25px;
-}
-.option {
-  background: #f7f7f7;
-  margin: 10px 0;
-  padding: 15px 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 16px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  border: 2px solid transparent;
-}
-.option:hover {
-  background: #e0f0ff;
-  border-color: #4a90e2;
-  transform: translateY(-2px);
-}
-input[type="radio"] {
-  margin-right: 10px;
-  transform: scale(1.3);
-  accent-color: #4a90e2;
-}
-button {
-  margin-top: 25px;
-  padding: 14px;
-  width: 100%;
-  background: linear-gradient(to right, #4a90e2, #89f7fe);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-}
-button:hover {
-  background: linear-gradient(to right, #66a6ff, #a2d4ff);
-  color: #333;
-}
-#result {
-  margin-top: 20px;
-  font-size: 22px;
-  color: #27ae60;
-  font-weight: bold;
-  animation: fadeIn 0.8s ease forwards;
-}
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-.progress-bar {
-  width: 100%;
-  background: #ddd;
-  height: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-.progress {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(to right, #4a90e2, #89f7fe);
-  transition: width 0.5s ease;
-}
-.timer {
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: #4a90e2;
-  font-weight: 600;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: #0f2027;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Animated lines background */
+    .lines-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .line {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      animation: moveLines 10s linear infinite;
+    }
+
+    @keyframes moveLines {
+      from {
+        transform: translateY(0) rotate(45deg);
+      }
+      to {
+        transform: translateY(-100%) rotate(45deg);
+      }
+    }
+
+    .quiz-container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      max-width: 500px;
+      width: 90%;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .question {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .option {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      color: #fff;
+      text-align: center;
+    }
+
+    .option:hover {
+      border-color: #4fc3f7;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .option input[type="radio"] {
+      display: none;
+    }
+
+    .option input[type="radio"]:checked + span::after {
+      content: "✔";
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      color: #4fc3f7;
+      font-size: 18px;
+    }
+
+    .option span {
+      display: inline-block;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #4fc3f7;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #81d4fa;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #00e676;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.2);
+      height: 8px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #4fc3f7;
+      transition: width 0.4s ease;
+    }
+
+    .timer {
+      font-size: 14px;
+      color: #b3e5fc;
+      margin-bottom: 15px;
+      text-align: right;
+    }
   </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <div class="progress-bar">
-      <div class="progress" id="progress"></div>
-    </div>
-    <div id="timer" class="timer"></div>
-    <div id="question" class="question"></div>
-    <div id="options"></div>
-    <button onclick="submitAnswer()">Submit</button>
-    <div id="result"></div>
-  </div>  <script>
-    const quizData = [
-      {
-        question: "What is the capital of France?",
-        options: ["Paris", "London", "Rome", "Berlin"],
-        answer: "Paris"
-      },
-      {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Earth", "Mars", "Jupiter", "Saturn"],
-        answer: "Mars"
-      },
-      {
-        question: "Who wrote 'Hamlet'?",
-        options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
-        answer: "William Shakespeare"
-      }
-    ];
 
-    let currentQuestion = 0;
-    let score = 0;
-    let timerInterval;
-    let timeLeft = 20;
-
-    function loadQuestion() {
-      clearInterval(timerInterval);
-      timeLeft = 20;
-      document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
-      timerInterval = setInterval(updateTimer, 1000);
-
-      const q = quizData[currentQuestion];
-      document.getElementById("question").innerText = q.question;
-      const optionsDiv = document.getElementById("options");
-      optionsDiv.innerHTML = "";
-      q.options.forEach(option => {
-        optionsDiv.innerHTML += `<div class='option'><label><input type='radio' name='option' value='${option}'> ${option}</label></div>`;
-      });
-      updateProgress();
+<div class="lines-bg">
+  <!-- 20 lines at different positions -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.style.left = `${Math.random() * 100}%`;
+      line.style.animationDuration = `${5 + Math.random() * 10}s`;
+      document.body.querySelector('.lines-bg').appendChild(line);
     }
+  </script>
+</div>
 
-    function updateTimer() {
-      timeLeft--;
-      document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        submitAnswer(true);
-      }
+<div class="quiz-container">
+  <div class="progress-bar"><div class="progress" id="progress"></div></div>
+  <div id="timer" class="timer"></div>
+  <div id="question" class="question"></div>
+  <div id="options" class="options-grid"></div>
+  <button id="nextBtn" onclick="submitAnswer()">Next</button>
+  <div id="result"></div>
+</div>
+
+<script>
+const quizData = [
+  { question: "Capital of France?", options: ["Paris", "Berlin", "Madrid", "Rome"], answer: "Paris" },
+  { question: "Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: "Mars" },
+  { question: "Author of Hamlet?", options: ["Twain", "Shakespeare", "Dickens", "Austen"], answer: "Shakespeare" }
+];
+
+let current = 0, score = 0, timer, timeLeft = 20;
+
+function loadQuestion() {
+  clearInterval(timer);
+  timeLeft = 20;
+  document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      submitAnswer(true);
     }
+  }, 1000);
 
-    function submitAnswer(timeout = false) {
-      clearInterval(timerInterval);
-      const selected = document.querySelector("input[name='option']:checked");
-      if (!selected && !timeout) return alert("Please select an option!");
-      if (selected && selected.value === quizData[currentQuestion].answer) {
-        score++;
-      }
-      currentQuestion++;
-      if (currentQuestion < quizData.length) {
-        loadQuestion();
-      } else {
-        showResult();
-      }
-    }
+  const q = quizData[current];
+  document.getElementById("question").innerText = q.question;
+  const options = document.getElementById("options");
+  options.innerHTML = "";
+  q.options.forEach(opt => {
+    const id = `opt-${opt}`;
+    options.innerHTML += `
+      <label class="option">
+        <input type="radio" name="option" value="${opt}" id="${id}" />
+        <span>${opt}</span>
+      </label>
+    `;
+  });
 
-    function updateProgress() {
-      const progress = document.getElementById('progress');
-      const percent = (currentQuestion / quizData.length) * 100;
-      progress.style.width = percent + '%';
-    }
+  document.getElementById("progress").style.width = `${(current / quizData.length) * 100}%`;
+}
 
-    function showResult() {
-      document.querySelector(".quiz-container").innerHTML = `<h2>Your Score: ${score}/${quizData.length}</h2><p style='margin-top:20px;'>Thanks for playing!</p>`;
-      launchConfetti();
-    }
+function submitAnswer(timeout = false) {
+  clearInterval(timer);
+  const selected = document.querySelector("input[name='option']:checked");
+  if (!selected && !timeout) return alert("Please select an option!");
+  if (selected && selected.value === quizData[current].answer) score++;
+  current++;
+  current < quizData.length ? loadQuestion() : showResult();
+}
 
-    function launchConfetti() {
-      confetti({
-        particleCount: 200,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#4a90e2', '#66a6ff', '#a2d4ff']
-      });
-    }
+function showResult() {
+  document.querySelector(".quiz-container").innerHTML = `
+    <h2>Your Score: ${score}/${quizData.length}</h2>
+    <p style="margin-top: 10px;">Well done!</p>
+  `;
+  confetti({ particleCount: 200, spread: 60, origin: { y: 0.6 } });
+}
 
-    loadQuestion();
-  </script></body>
+loadQuestion();
+</script>
+
+</body>
 </html>
