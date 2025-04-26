@@ -47,7 +47,7 @@
     }
 
     .quiz-container {
-      position: relative;
+      position: middle;
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 20px;
