@@ -15,7 +15,7 @@
       color: #fff;
       overflow: hidden;
       display: flex;
-      justify-content: left;
+      justify-content: center;
       align-items: center;
       position: center;
     }
