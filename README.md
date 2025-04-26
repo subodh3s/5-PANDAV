@@ -194,6 +194,10 @@ const quizData = [
   { question: "Gas used to Extinguish Fire?", options: ["Nitrogen", "Oxygen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxide" },
   { question: "National Animal of Australia?", options: ["Kangaroo", "Panda", "Zebra", "Giraffe"], answer: "Kangaroo" },
   { question: "What does Entomology deals with?", options: ["The study of Insects", "The study of Behaviour of Human Beings", "The study of rocks", "The study of Nature"], answer: "The study of Insects" },
+  { question: " Hitler's party is known as?", options: ["Labour Party", "Nazi Party", "Ku-Klux-Klan", "Democratic Party"], answer: "Nazi Party" },
+  { question: " When the First Afghan War took place in?", options: ["1969", "1839", "1843", "1848"], answer: "1839" },
+  { question: "Largest Island?", options: ["New Guinea", "Greenland", "Andaman Nicobar", "Hawaii"], answer: "Greenland" },
+  { question: "Hottest Continent?", options: ["South Asia", "Africa", "Australia", "North America"], answer: "Africa" },
 ];
 
 let current = 0, score = 0, timer, timeLeft = 20;
