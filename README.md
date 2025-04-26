@@ -32,7 +32,7 @@
     .line {
       position: absolute;
       width: 2px;
-      height: 150%;
+      height: 100%;
       background: rgba(255, 255, 255, 0.05);
       animation: moveLines 10s linear infinite;
     }
@@ -50,7 +50,7 @@
       position: relative;
       background: rgba(255, 255, 255, 0.1);
       padding: 40px;
-      border-radius: 20px;
+      border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       max-width: 700px;
       width: 250%;
