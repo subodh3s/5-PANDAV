@@ -61,7 +61,7 @@
     .question {
       font-size: 28px;
       font-weight: bold;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .options-grid {
