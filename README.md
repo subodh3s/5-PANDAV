@@ -59,9 +59,9 @@
     }
 
     .question {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .options-grid {
@@ -72,13 +72,14 @@
 
     .option {
       background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 12px;
+      padding: 20px;
+      border-radius: 14px;
       border: 1px solid transparent;
       cursor: pointer;
       transition: 0.3s;
       position: relative;
       color: #fff;
+      font-size: 18px;
       text-align: center;
     }
 
