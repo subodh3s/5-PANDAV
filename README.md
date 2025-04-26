@@ -86,6 +86,8 @@
     .option:hover {
       border-color: #4fc3f7;
       background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(79, 195, 247, 0.7)
+      transform: transformY(-2px);
     }
 
     .option input[type="radio"] {
