@@ -188,6 +188,11 @@
                 options: ["1869 July 23", "1914 July 28", "1941 August 21", "1491 January 1"],
                 answer: "1914 July 28"
             },
+             {
+                question: "Which of the following countries was first to use a symbol for Zero(0)?",
+                options: ["United Kingdom", "India", "Japan", "China"],
+                answer: "India"
+            },
         ];
 
         let currentQuestion = 0;
