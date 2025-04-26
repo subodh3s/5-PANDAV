@@ -198,6 +198,7 @@ const quizData = [
   { question: " When the First Afghan War took place in?", options: ["1969", "1839", "1843", "1848"], answer: "1839" },
   { question: "Largest Island?", options: ["New Guinea", "Greenland", "Andaman Nicobar", "Hawaii"], answer: "Greenland" },
   { question: "Hottest Continent?", options: ["South Asia", "Africa", "Australia", "North America"], answer: "Africa" },
+  { question: "Largesat Continent?", options: ["South Asia", "Africa", "Australia", "North America"], answer: "South Asia" },
 ];
 
 let current = 0, score = 0, timer, timeLeft = 20;
