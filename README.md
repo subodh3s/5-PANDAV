@@ -50,7 +50,7 @@
       position: relative;
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
-      border-radius: 20px;
+      border-radius: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       max-width: 700px;
       width: 250%;
@@ -98,7 +98,7 @@
       content: "✔";
       position: absolute;
       top: 8px;
-      right: 5px;
+      right: 10px;
       color: #4fc3f7;
       font-size: 18px;
     }
