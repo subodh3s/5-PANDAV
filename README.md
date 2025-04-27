@@ -19,7 +19,6 @@
         align-items: center;
         position: relative;
       }
-   
       /* Animated lines background */
     .lines-bg {
       position: absolute;
@@ -45,8 +44,7 @@
         transform: translateY(-100%) rotate(45deg);
       }
     }
-    
-    .quiz-container {
+      .quiz-container {
           position: relative;
           background: rgba(255, 255, 255, 0.1);
           padding: 30px;
@@ -57,7 +55,6 @@
           z-index: 20;
           backdrop-filter: blur(10px);
         }
-    }
     .question {
       font-size: 28px;
       font-weight: bold;
