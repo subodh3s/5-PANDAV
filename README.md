@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -189,7 +188,19 @@
 const quizData = [
   { question: "Capital of France?", options: ["Paris", "Berlin", "Madrid", "Rome"], answer: "Paris" },
   { question: "Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: "Mars" },
-  { question: "Author of Hamlet?", options: ["Twain", "Shakespeare", "Dickens", "Austen"], answer: "Shakespeare" }
+  { question: "Author of Hamlet?", options: ["Twain", "Shakespeare", "Dickens", "Austen"], answer: "Shakespeare" },
+  { question: "Largest Continent", options: ["Asia", "Africa", "North America", "Europe"], answer: "Asia" },
+  { question: "Capital of Belarus?", options: ["Kathmandu", "Minsk", "Chinsinau", "Kyiv"], answer: "Minsk" },
+  { question: "Largest Lake?", options: ["Baikal", "Fewa Lake", "Caspian Sea", "Lake Superior"], answer: "Baikal" },
+  { question: "Longest River?", options: ["Amazon", "Kaligandaki", "Nile", "Mississippi"], answer: "Nile" },
+  { question: "Dumbest Animal?", options: ["Koala", "Ostrich", "Kiwi", "Sloth"], answer: "Ostrich" },
+  { question: "Best Teacher?", options: ["Pratham", "Shiva", "Bishnu", "Pawan"], answer: "Pratham" },
+  { question: "Who hit fastest 50 in IPL?", options: ["Virat Kohli", "MS Dhoni", "Yashasvi Jaiswal", "Rohit Sharma"], answer: "Yashasvi Jaiswal" },
+  { question: "Cristiano Ronaldo total Goals?", options: ["999", "929", "969", "933"], answer: "933" },
+  { question: "Most MOTO GP titles?", options: ["Valentinio Rossi", "	Marc Márquez", "Alex Márquez", "Giacomo Agostini"], answer: "Giacomo Agostini" },
+  { question: "Largest Island?", options: ["Greenland", "New Guinea", "Hawaii", "Honshu"], answer: "Greenland" },
+  { question: "Strongest Man?", options: ["Dwayne Johnson", "Bill Kazmaier", "Tarun Gill", "Tom Stoltman"], answer: "Tom Stoltman" },
+  { question: "Heart of Computer?", options: ["Moniter", "Motherboard", "CPU", "Mouse"], answer: "CPU" }
 ];
 
 let current = 0, score = 0, timer, timeLeft = 20;
