@@ -57,7 +57,7 @@
           z-index: 20;
           backdrop-filter: blur(10px);
         }
-  
+    }
     .question {
       font-size: 28px;
       font-weight: bold;
