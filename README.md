@@ -19,8 +19,7 @@
         align-items: center;
         position: relative;
       }
-
-    /* Animated lines background */
+      /* Animated lines background */
     .lines-bg {
       position: absolute;
       width: 100%;
@@ -57,7 +56,6 @@
           z-index: 20;
           backdrop-filter: blur(10px);
         }
-    
     .question {
       font-size: 28px;
       font-weight: bold;
