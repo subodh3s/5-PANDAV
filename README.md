@@ -19,6 +19,7 @@
         align-items: center;
         position: relative;
       }
+   
       /* Animated lines background */
     .lines-bg {
       position: absolute;
@@ -56,12 +57,13 @@
           z-index: 20;
           backdrop-filter: blur(10px);
         }
+  
     .question {
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 20px;
     }
-    
+    {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
