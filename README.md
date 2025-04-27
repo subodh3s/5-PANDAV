@@ -5,8 +5,8 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-     body {
+    
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
@@ -45,7 +45,6 @@
         transform: translateY(-100%) rotate(45deg);
       }
     }
- 
      .quiz-container {
       position: relative;
       background: rgba(255, 255, 255, 0.1);
