@@ -2,213 +2,250 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz App with Timer</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz App</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: #0f2027;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Animated lines background */
+    .lines-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .line {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      animation: moveLines 10s linear infinite;
+    }
+
+    @keyframes moveLines {
+      from {
+        transform: translateY(0) rotate(45deg);
+      }
+      to {
+        transform: translateY(-100%) rotate(45deg);
+      }
+    }
+
+    .quiz-container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      max-width: 700px;
+      width: 90%;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .question {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .option {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      color: #fff;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .option:hover {
+      border-color: #4fc3f7;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(79, 195, 247, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .option input[type="radio"] {
+      display: none;
+    }
+
+    .option input[type="radio"]:checked + span::after {
+      content: "✔";
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      color: #4fc3f7;
+      font-size: 18px;
+    }
+
+    .option span {
+      display: inline-block;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #4fc3f7;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #81d4fa;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #00e676;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.2);
+      height: 8px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #4fc3f7;
+      transition: width 0.4s ease;
+    }
+
+    .timer {
+      font-size: 14px;
+      color: #b3e5fc;
+      margin-bottom: 15px;
+      text-align: right;
+    }
+  </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <div class="top-bar">
-      <div class="question-number">Question <span id="q-number">1</span></div>
-      <div class="timer">Time left: <span id="time">15</span>s</div>
-    </div>
-    <h2 class="question" id="question">Question goes here</h2>
-    <div class="options">
-      <div class="option-box" data-option="a" id="a_text">Option A</div>
-      <div class="option-box" data-option="b" id="b_text">Option B</div>
-      <div class="option-box" data-option="c" id="c_text">Option C</div>
-      <div class="option-box" data-option="d" id="d_text">Option D</div>
-    </div>
-    <button id="submit">Submit</button>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: #121212;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-}
 
-.quiz-container {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 600px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  box-sizing: border-box;
-  text-align: center;
-}
+<div class="lines-bg">
+  <script>
+    for (let i = 0; i < 20; i++) {
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.style.left = `${Math.random() * 100}%`;
+      line.style.animationDuration = `${5 + Math.random() * 10}s`;
+      document.body.querySelector('.lines-bg').appendChild(line);
+    }
+  </script>
+</div>
 
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  font-size: 16px;
-}
+<div class="quiz-container">
+  <div class="progress-bar"><div class="progress" id="progress"></div></div>
+  <div id="timer" class="timer"></div>
+  <div id="question" class="question"></div>
+  <div id="options" class="options-grid"></div>
+  <button id="nextBtn" onclick="submitAnswer()">Next</button>
+  <div id="result"></div>
+</div>
 
-.question {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
+<!-- Success Sound -->
+<audio id="winSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c6b7b4cfb0.mp3?filename=success-1-6297.mp3"></audio>
 
-.options {
-  display: grid;
-  gap: 15px;
-}
-
-.option-box {
-  background: #1e1e1e;
-  padding: 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-  border: 2px solid transparent;
-}
-
-.option-box:hover {
-  background: #2c2c2c;
-}
-
-.option-box.selected {
-  border-color: #4caf50;
-  background: #2e7d32;
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #4caf50;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #388e3c;
-}
+<script>
 const quizData = [
-  {
-    question: "Which language runs in a browser?",
-    a: "Java",
-    b: "C",
-    c: "Python",
-    d: "JavaScript",
-    correct: "d",
-  },
-  {
-    question: "What does CSS stand for?",
-    a: "Central Style Sheets",
-    b: "Cascading Style Sheets",
-    c: "Cascading Simple Sheets",
-    d: "Computer Style Sheet",
-    correct: "b",
-  },
+  { question: "Capital of France?", options: ["Paris", "Berlin", "Madrid", "Rome"], answer: "Paris" },
+  { question: "Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: "Mars" },
+  { question: "Author of Hamlet?", options: ["Twain", "Shakespeare", "Dickens", "Austen"], answer: "Shakespeare" }
 ];
 
-let currentQuiz = 0;
-let score = 0;
-let selectedAnswer = "";
-let time = 15;
-let timerInterval;
+let current = 0, score = 0, timer, timeLeft = 20;
 
-const questionEl = document.getElementById("question");
-const options = document.querySelectorAll(".option-box");
-const submitBtn = document.getElementById("submit");
-const timeEl = document.getElementById("time");
-const qNumEl = document.getElementById("q-number");
-
-function loadQuiz() {
-  clearInterval(timerInterval);
-  time = 15;
-  updateTimer();
-
-  const current = quizData[currentQuiz];
-  questionEl.innerText = current.question;
-  qNumEl.innerText = currentQuiz + 1;
-  document.getElementById("a_text").innerText = current.a;
-  document.getElementById("b_text").innerText = current.b;
-  document.getElementById("c_text").innerText = current.c;
-  document.getElementById("d_text").innerText = current.d;
-
-  deselectOptions();
-  startTimer();
-}
-
-function startTimer() {
-  timerInterval = setInterval(() => {
-    time--;
-    updateTimer();
-    if (time === 0) {
-      clearInterval(timerInterval);
-      autoSubmit();
+function loadQuestion() {
+  clearInterval(timer);
+  timeLeft = 20;
+  document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      submitAnswer(true);
     }
   }, 1000);
-}
 
-function updateTimer() {
-  timeEl.innerText = time;
-}
-
-function deselectOptions() {
-  options.forEach(opt => opt.classList.remove("selected"));
-  selectedAnswer = "";
-}
-
-options.forEach(option => {
-  option.addEventListener("click", () => {
-    deselectOptions();
-    option.classList.add("selected");
-    selectedAnswer = option.dataset.option;
+  const q = quizData[current];
+  document.getElementById("question").innerText = q.question;
+  const options = document.getElementById("options");
+  options.innerHTML = "";
+  q.options.forEach(opt => {
+    const id = `opt-${opt}`;
+    options.innerHTML += `
+      <label class="option">
+        <input type="radio" name="option" value="${opt}" id="${id}" />
+        <span>${opt}</span>
+      </label>
+    `;
   });
-});
 
-submitBtn.addEventListener("click", () => {
-  if (!selectedAnswer) {
-    alert("Select an answer!");
-    return;
-  }
-  clearInterval(timerInterval);
-  checkAnswer();
-});
-
-function checkAnswer() {
-  if (selectedAnswer === quizData[currentQuiz].correct) {
-    score++;
-  }
-  nextQuestion();
+  document.getElementById("progress").style.width = `${(current / quizData.length) * 100}%`;
 }
 
-function autoSubmit() {
-  alert("Time's up!");
-  nextQuestion();
+function submitAnswer(timeout = false) {
+  clearInterval(timer);
+  const selected = document.querySelector("input[name='option']:checked");
+  if (!selected && !timeout) return alert("Please select an option!");
+  if (selected && selected.value === quizData[current].answer) score++;
+  current++;
+  current < quizData.length ? loadQuestion() : showResult();
 }
 
-function nextQuestion() {
-  currentQuiz++;
-  if (currentQuiz < quizData.length) {
-    loadQuiz();
-  } else {
-    showResults();
-  }
-}
-
-function showResults() {
+function showResult() {
   document.querySelector(".quiz-container").innerHTML = `
-    <h2>You've scored ${score} out of ${quizData.length}</h2>
-    <button onclick="location.reload()">Try Again</button>
+    <h2>Your Score: ${score}/${quizData.length}</h2>
+    <p style="margin-top: 10px;">Well done!</p>
   `;
+  confetti({ particleCount: 200, spread: 60, origin: { y: 0.6 } });
+
+  const winSound = document.getElementById("winSound");
+  winSound.play();
 }
 
-loadQuiz();
+loadQuestion();
+</script>
 
+</body>
+</html>
