@@ -7,18 +7,18 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      height: 100vh;
-      background: #0f2027;
-      color: #fff;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        background: #0f2027;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
 
     /* Animated lines background */
     .lines-bg {
@@ -45,19 +45,20 @@
         transform: translateY(-100%) rotate(45deg);
       }
     }
-     .quiz-container {
-      position: relative;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      max-width: 700px;
-      width: 250%;
-      z-index: 20;
-      backdrop-filter: blur(10px);
-    }
-    }
-     question {
+    
+    .quiz-container {
+          position: relative;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 30px;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          max-width: 700px;
+          width: 250%;
+          z-index: 20;
+          backdrop-filter: blur(10px);
+        }
+    
+    .question {
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 20px;
