@@ -17,7 +17,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: center;
+      position: left;
     }
 
     /* Animated lines background */
