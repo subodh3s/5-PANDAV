@@ -200,7 +200,8 @@ const quizData = [
   { question: "Most MOTO GP titles?", options: ["Valentinio Rossi", "	Marc Márquez", "Alex Márquez", "Giacomo Agostini"], answer: "Giacomo Agostini" },
   { question: "Largest Island?", options: ["Greenland", "New Guinea", "Hawaii", "Honshu"], answer: "Greenland" },
   { question: "Strongest Man?", options: ["Dwayne Johnson", "Bill Kazmaier", "Tarun Gill", "Tom Stoltman"], answer: "Tom Stoltman" },
-  { question: "Heart of Computer?", options: ["Moniter", "Motherboard", "CPU", "Mouse"], answer: "CPU" }
+  { question: "Heart of Computer?", options: ["Moniter", "Motherboard", "CPU", "Mouse"], answer: "CPU" },
+  { question: "Oldest Temple?", options: ["Changu Narayan", "Temple of Hatshepsut", "Mundeswari Temple", "Göbekli Tepe"], answer: "Göbekli Tepe" }
 ];
 
 let current = 0, score = 0, timer, timeLeft = 20;
