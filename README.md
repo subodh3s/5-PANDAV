@@ -204,6 +204,9 @@ const quizData = [
   { question: "Oldest Temple?", options: ["Changu Narayan", "Temple of Hatshepsut", "Mundeswari Temple", "Göbekli Tepe"], answer: "Göbekli Tepe" }
 ];
 
+  document.getElementById("question").classList.add("fade-in");
+document.getElementById("options").classList.add("fade-in");
+
 let current = 0, score = 0, timer, timeLeft = 20;
 
 function loadQuestion() {
